@@ -1,0 +1,39 @@
+version: '3'
+
+services:
+  opensearch-dashboards:
+    image: opensearchproject/opensearch-dashboards:2
+    container_name: opensearch-dashboards
+    environment:
+      OPENSEARCH_HOSTS: "https://opensearch:9200"
+    ports:
+      - 5601:5601
+    links:
+      - opensearch
+    networks:
+      - os_network
+
+  opensearch:
+    image: opensearchproject/opensearch:2
+    container_name: opensearch
+    environment:
+      - cluster.name=opensearch-cluster
+      - node.name=opensearch-node
+      - cluster.initial_master_nodes=opensearch-node
+      - bootstrap.memory_lock=true
+      - http.host=0.0.0.0
+      - transport.host=127.0.0.1
+      - "OPENSEARCH_JAVA_OPTS=-Xms512m -Xmx512m"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - $PWD/.local/opensearch:/usr/share/opensearch/data
+    ports:
+      - 9200:9200
+    networks:
+      - os_network
+
+networks:
+  os_network:
