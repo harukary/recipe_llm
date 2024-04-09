@@ -1,0 +1,113 @@
+{
+    "mappings": {
+        "properties": {
+            "id": {
+                "type": "integer"
+            },
+            "name": {
+                "type": "text"
+            },
+            "description": {
+                "type": "text"
+            },
+            "tags": {
+                "type": "keyword"
+            },
+            "minutes": {
+                "type": "integer"
+            },
+            "contributor_id": {
+                "type": "integer"
+            },
+            "techniques": {
+                "properties": {
+                    "names": {
+                        "type": "keyword"
+                    },
+                    "ids": {
+                        "type": "integer"
+                    }
+                }
+            },
+            "ingredients": {
+                "properties": {
+                    "num": {
+                        "type": "integer"
+                    },
+                    "names": {
+                        "type": "keyword"
+                    },
+                    "ids": {
+                        "type": "integer"
+                    }
+                }
+            },
+            "steps": {
+                "properties": {
+                    "num": {
+                        "type": "integer"
+                    },
+                    "instructions": {
+                        "type": "text"
+                    }
+                }
+            },
+            "nutrition": {
+                "properties": {
+                    "calories": {
+                        "type": "double"
+                    },
+                    "protein": {
+                        "type": "double"
+                    },
+                    "carbohydrates": {
+                        "type": "double"
+                    },
+                    "fat": {
+                        "type": "double"
+                    },
+                    "sugar": {
+                        "type": "double"
+                    },
+                    "sodium": {
+                        "type": "double"
+                    },
+                    "saturated_fat": {
+                        "type": "double"
+                    }
+                }
+            },
+            "rating": {
+                "properties": {
+                    "interactions": {
+                        "type": "nested",
+                        "properties": {
+                            "user_id": {
+                                "type": "integer"
+                            },
+                            "date": {
+                                "type": "date",
+                                "format": "yyyy-MM-dd"
+                            },
+                            "rating": {
+                                "type": "integer"
+                            },
+                            "review": {
+                                "type": "text"
+                            }
+                        }
+                    },
+                    "average": {
+                        "type": "double"
+                    },
+                    "n": {
+                        "type": "double"
+                    }
+                }
+            },
+            "top_1000": {
+                "type": "boolean"
+            }
+        }
+    }
+}
