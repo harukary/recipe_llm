@@ -5,3 +5,5 @@
 Pipfile*
 
 data
+/docker/opensearch/.local
+.DS_Store
